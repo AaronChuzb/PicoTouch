@@ -2,6 +2,7 @@
 #include "DISP/DISP.h"
 #include "UI/ui.h"
 
+
 void setup()
 {
   // 顺序不能调换，需要先申请足够的内存，如果先对HAL库进行初始化就会没有足够连续的内存给lvgl申请
@@ -19,13 +20,14 @@ void setup()
   lv_obj_add_style(ui_Label2, &font_style, 0);
   // lv_obj_add_style(label_zh, &font_style, 0);
   // lv_label_set_text(label_zh, "你好8");
-  lv_label_set_text(ui_Label1, "233");
-  lv_label_set_text(ui_Label2, "你是大傻逼");
+  
+  lv_label_set_text(ui_Label2, "Pico-Touch");
   
 }
 
 void loop()
 {
   HAL::Update();
+  
   delay(20);
 }

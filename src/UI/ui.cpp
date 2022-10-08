@@ -5,6 +5,7 @@
 
 #include "ui.h"
 #include "ui_helpers.h"
+#include "HAL/HAL.h"
 
 ///////////////////// VARIABLES ////////////////////
 lv_obj_t * ui_Screen1;
@@ -21,9 +22,15 @@ lv_obj_t * ui_Roller1;
 #endif
 
 ///////////////////// ANIMATIONS ////////////////////
-
+Power_Info_t bat;
 ///////////////////// FUNCTIONS ////////////////////
-
+void Bat_Update (lv_timer_t* timer)
+{
+  HAL::Get_BatPercent(&bat);
+  Serial.println(bat.usage);
+  Serial.println(HAL::Get_Bat());
+  lv_label_set_text(ui_Label1, HAL::Get_Bat().c_str());
+}
 ///////////////////// SCREENS ////////////////////
 void ui_Screen1_screen_init(void)
 {
@@ -60,6 +67,8 @@ void ui_Screen1_screen_init(void)
     lv_obj_set_x(ui_Roller1, 5);
     lv_obj_set_y(ui_Roller1, -7);
     lv_obj_set_align(ui_Roller1, LV_ALIGN_CENTER);
+    lv_timer_t* timer = lv_timer_create(Bat_Update, 1000, nullptr);
+    lv_timer_ready(timer);
 
 }
 

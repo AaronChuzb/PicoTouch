@@ -1,7 +1,7 @@
 /*
  * @Date: 2022-09-24 15:38:31
  * @LastEditors: AaronChu
- * @LastEditTime: 2022-09-27 22:08:00
+ * @LastEditTime: 2022-10-05 21:37:00
  */
 
 // 触摸宏定义
@@ -30,5 +30,10 @@
 #define SD_CLK 14
 #define SD_MISO 26
 #define SD_DET 27
+
+// 陀螺仪接口
+
+#define IMU_SDA 32
+#define IMU_SCL 33
 
 

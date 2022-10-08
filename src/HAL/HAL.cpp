@@ -1,13 +1,12 @@
 /*
  * @Date: 2022-09-24 21:43:00
  * @LastEditors: AaronChu
- * @LastEditTime: 2022-09-27 22:20:27
+ * @LastEditTime: 2022-10-05 23:24:27
  */
 
 
 #include "HAL.h"
-
-
+#include "UI/ui.h"
 
 
 void HAL::Init()
@@ -26,9 +25,14 @@ void HAL::Init()
   // HAL::Encoder_Init();
 
   HAL::SD_Init();
+
+  HAL::IMU_Init();
 }
 
 void HAL::Update()
 {
   HAL::Encoder_Update();
+  // HAL::IMU_Update(200);
+  
+  // lv_label_set_text(ui_Label1, HAL::Get_BatPercent().c_str());
 }

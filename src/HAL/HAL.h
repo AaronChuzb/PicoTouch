@@ -1,16 +1,19 @@
 /*
  * @Date: 2022-09-24 21:43:07
  * @LastEditors: AaronChu
- * @LastEditTime: 2022-09-27 22:09:53
+ * @LastEditTime: 2022-10-05 23:23:01
  */
 #include <stdint.h>
 #include <Arduino.h>
 #include "DISP/DISP.h"
 #include <Wire.h>
-#include "AXP173.h"
 #include "config.h"
 #include "FreeRTOS.h"
 
+typedef struct
+{
+  String usage;
+} Power_Info_t;
 
 namespace HAL
 {
@@ -18,7 +21,8 @@ namespace HAL
   void Update();
   // 电源相关
   void Init_Power();
-  String Get_BatPercent();
+  void Get_BatPercent(Power_Info_t *bat);
+  String Get_Bat();
   bool isCharging();
   void powerOFF();
 
@@ -38,6 +42,9 @@ namespace HAL
   bool SD_Init();
   bool SD_GetReady();
   float SD_GetCardSizeMB();
+  // 陀螺仪
+  void IMU_Init();
+  void IMU_Update(int interval);
 
 
 }
