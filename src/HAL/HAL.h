@@ -1,18 +1,23 @@
 /*
  * @Date: 2022-09-24 21:43:07
  * @LastEditors: AaronChu
- * @LastEditTime: 2022-10-05 23:23:01
+ * @LastEditTime: 2022-10-15 00:15:06
  */
 #include <stdint.h>
 #include <Arduino.h>
 #include "DISP/DISP.h"
+#include "UI/ui.h"
 #include <Wire.h>
 #include "config.h"
 #include "FreeRTOS.h"
+#include <WiFi.h>
+#include "time.h"
 
 typedef struct
 {
   String usage;
+  bool isCharging;
+  bool chargeFlag;
 } Power_Info_t;
 
 namespace HAL
@@ -24,7 +29,7 @@ namespace HAL
   void Get_BatPercent(Power_Info_t *bat);
   String Get_Bat();
   bool isCharging();
-  void powerOFF();
+  void Power_Shutdown();
 
   // 背光
   void BL_Init();
@@ -32,6 +37,9 @@ namespace HAL
   uint32_t BL_GetValue();
   void BL_SetValue(int32_t val);
   void BL_ForceLit(bool en);
+  void BL_SetBacklightValue(int32_t val);
+  uint32_t BL_GetBacklightValue();
+
   // 编码器
   void Encoder_Init();
   void Encoder_Update();
@@ -45,6 +53,20 @@ namespace HAL
   // 陀螺仪
   void IMU_Init();
   void IMU_Update(int interval);
-
+  // 蜂鸣器
+  void Buzz_init();
+  void Buzz_SetEnable(bool en);
+  void Buzz_Tone(uint32_t _freq, int32_t _duration = 0);
+  // 音乐
+  void Audio_Init();
+  void Audio_Update();
+  bool Audio_PlayMusic(const char *name);
+  // iic扫描
+  void I2C_Init(bool startScan);
+  // WIFI
+  void WiFi_Init();
+  // 时间
+  void Time_Init();
+  void Time_Event();
 
 }

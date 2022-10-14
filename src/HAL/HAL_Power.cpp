@@ -1,14 +1,14 @@
 /*
  * @Date: 2022-09-24 21:44:43
  * @LastEditors: AaronChu
- * @LastEditTime: 2022-10-05 23:32:15
+ * @LastEditTime: 2022-10-13 23:45:13
  */
 
 #include "HAL.h"
 #include "AXP173.h"
 
 static AXP173 pmu;
-static uint8_t BatPercent = 0;
+static uint8_t BatPercent = 100;
 
 void HAL::Init_Power()
 {
@@ -17,8 +17,13 @@ void HAL::Init_Power()
 
 void HAL::Get_BatPercent(Power_Info_t *bat)
 {
+  if(pmu.isCharging() && !bat->chargeFlag){
+    bat->chargeFlag = true;
+  } else {
+    bat->chargeFlag = false;
+  }
   int readLevel = (int)pmu.getBatLevel();
-  if(BatPercent < readLevel && !pmu.isCharging()){ // 防止电量上下跳变
+  if(readLevel < BatPercent || bat->chargeFlag){ // 防止电量上下跳变
     BatPercent = readLevel;
   }
   bat->usage = String(BatPercent);
@@ -38,7 +43,7 @@ bool HAL::isCharging()
   return pmu.isCharging();
 }
 
-void HAL::powerOFF()
+void HAL::Power_Shutdown()
 {
   pmu.powerOFF();
 }

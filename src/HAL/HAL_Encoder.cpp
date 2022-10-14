@@ -1,7 +1,7 @@
 /*
  * @Date: 2022-09-25 00:28:52
  * @LastEditors: AaronChu
- * @LastEditTime: 2022-09-25 00:57:48
+ * @LastEditTime: 2022-10-14 00:07:04
  */
 #include "HAL/HAL.h"
 #include "ButtonEvent.h"
@@ -53,16 +53,21 @@ static void Encoder_PushHandler(ButtonEvent *btn, int event)
 {
   if (event == ButtonEvent::EVENT_PRESSED)
   {
-    // HAL::Buzz_Tone(500, 20);
+    HAL::Buzz_Tone(500, 20);
+    // HAL::Audio_PlayMusic("Startup");
     Serial.println("按下");
-    
     EncoderDiffDisable = true;
   }
   else if (event == ButtonEvent::EVENT_RELEASED)
   {
-    // HAL::Buzz_Tone(700, 20);
+    HAL::Buzz_Tone(700, 20);
     Serial.println("松开");
     EncoderDiffDisable = false;
+    if(HAL::BL_GetValue() == 0){
+      HAL::BL_SetGradual(HAL::BL_GetBacklightValue(),100);
+    } else {
+      HAL::BL_SetGradual(0,100);
+    }
   }
   else if (event == ButtonEvent::EVENT_LONG_PRESSED)
   {
@@ -75,9 +80,11 @@ static void Encoder_PushHandler(ButtonEvent *btn, int event)
 static void Encoder_RotateHandler(int16_t diff)
 {
   Serial.println(diff);
-  
-  HAL::BL_SetGradual(HAL::BL_GetValue() + -diff * 100,100);
-  // HAL::Buzz_Tone(300, 5);
+  int32_t light = HAL::BL_GetValue() + -diff * 100;
+  light <= 128?light = 100:light = light;
+  HAL::BL_SetBacklightValue(light);
+  HAL::BL_SetGradual(light, 100);
+  HAL::Buzz_Tone(400, 15);
 
   // actEncoder->Commit((const void*) &diff, sizeof(int16_t));
   // actEncoder->Publish();

@@ -1,6 +1,8 @@
 {
   "files.associations": {
     "*.vue": "vue",
-    "lvgl.h": "c"
+    "lvgl.h": "c",
+    "string": "cpp",
+    "*.inc": "cpp"
   }
 }

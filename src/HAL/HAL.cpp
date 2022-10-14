@@ -1,12 +1,13 @@
 /*
  * @Date: 2022-09-24 21:43:00
  * @LastEditors: AaronChu
- * @LastEditTime: 2022-10-05 23:24:27
+ * @LastEditTime: 2022-10-15 00:18:14
  */
 
 
 #include "HAL.h"
-#include "UI/ui.h"
+
+
 
 
 void HAL::Init()
@@ -18,21 +19,22 @@ void HAL::Init()
   Serial.println(LVGL_Arduino);
   Serial.println("I am LVGL_Arduino");
   HAL::Init_Power();
-  Serial.println("I am LVGL_Arduino2");
   HAL::BL_Init();
-  
   HAL::BL_SetGradual(500, 1000);
-  // HAL::Encoder_Init();
-
-  HAL::SD_Init();
-
+  HAL::Buzz_init();
+  HAL::Audio_Init();
+  HAL::Encoder_Init();
   HAL::IMU_Init();
+  HAL::SD_Init();
+  HAL::WiFi_Init();
+  HAL::Time_Init();
 }
 
 void HAL::Update()
 {
   HAL::Encoder_Update();
-  // HAL::IMU_Update(200);
+  HAL::Audio_Update();
+  HAL::IMU_Update(500);
   
   // lv_label_set_text(ui_Label1, HAL::Get_BatPercent().c_str());
 }

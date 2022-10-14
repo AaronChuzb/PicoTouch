@@ -2,6 +2,7 @@
 #include "HAL/HAL.h"
 
 static uint32_t backlightValue = 0;
+static uint32_t tempBacklightValue = 500;
 
 static void BL_AnimCallback(void *obj, int32_t brightness)
 {
@@ -17,9 +18,9 @@ void HAL::BL_Init()
 
 
 /**
- * @description: ±³¹â½¥±ä
- * @param {uint32_t} target Ä¿±êÁÁ¶È (0~1000)
- * @param {uint16_t} time Ê±¼ä (ms)
+ * @description: ï¿½ï¿½ï¿½â½¥ï¿½ï¿½
+ * @param {uint32_t} target Ä¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (0~1000)
+ * @param {uint16_t} time Ê±ï¿½ï¿½ (ms)
  */
 void HAL::BL_SetGradual(uint32_t target, uint16_t time)
 {
@@ -50,4 +51,15 @@ void HAL::BL_ForceLit(bool en)
 {
   pinMode(TFT_BL, OUTPUT);
   digitalWrite(TFT_BL, en);
+}
+
+void HAL::BL_SetBacklightValue(int32_t val)
+{
+  val = constrain(val, 0, 1024);
+  tempBacklightValue = val;
+}
+
+uint32_t HAL::BL_GetBacklightValue()
+{
+  return tempBacklightValue;
 }

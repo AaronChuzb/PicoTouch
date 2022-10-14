@@ -23,9 +23,19 @@ extern "C" {
 #endif
 
 extern lv_obj_t * ui_Screen1;
-extern lv_obj_t * ui_Label1;
-extern lv_obj_t * ui_Label2;
-extern lv_obj_t * ui_Roller1;
+extern lv_obj_t * ui_BAT;
+extern lv_obj_t * ui_Label3;
+extern lv_obj_t * ui_Panel1;
+extern lv_obj_t * ui_Hour;
+extern lv_obj_t * ui_Panel2;
+extern lv_obj_t * ui_Min;
+extern lv_obj_t * ui_Bar1;
+extern lv_obj_t * ui_Label4;
+void ui_event_Button1(lv_event_t * e);
+extern lv_obj_t * ui_Button1;
+extern lv_obj_t * ui_Label5;
+void ui_event_Slider1(lv_event_t * e);
+extern lv_obj_t * ui_Slider1;
 
 
 

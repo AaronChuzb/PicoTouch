@@ -1,7 +1,7 @@
 /*
  * @Date: 2022-09-24 15:38:31
  * @LastEditors: AaronChu
- * @LastEditTime: 2022-10-05 21:37:00
+ * @LastEditTime: 2022-10-13 21:32:28
  */
 
 // 触摸宏定义
@@ -35,5 +35,9 @@
 
 #define IMU_SDA 32
 #define IMU_SCL 33
+
+// 蜂鸣器
+
+#define BUZZ 25
 
 
