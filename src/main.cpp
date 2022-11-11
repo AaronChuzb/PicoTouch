@@ -6,6 +6,7 @@
 
 
 
+
 Power_Info_t bat;
 void Bat_Update(lv_timer_t *timer)
 {
@@ -22,16 +23,17 @@ void setup()
   // 顺序不能调换，需要先申请足够的内存，如果先对HAL库进行初始化就会没有足够连续的内存给lvgl申请
   Disp_Init();
   HAL::Init();
-  ui_init();
-  LV_FONT_DECLARE(chinese);
-  static lv_style_t font_style;
-  lv_style_init(&font_style);
-  lv_style_set_text_font(&font_style, &chinese);
-  lv_obj_add_style(ui_BAT, &font_style, 0);
-  lv_obj_add_style(ui_Label3, &font_style, 0);
-  // lv_label_set_text(ui_BAT, "Pico-Touch");
-  lv_timer_t *timer = lv_timer_create(Bat_Update, 1000, nullptr);
-  lv_timer_ready(timer);
+  // PageManagerInit();
+  // ui_init();
+  // LV_FONT_DECLARE(chinese);
+  // static lv_style_t font_style;
+  // lv_style_init(&font_style);
+  // lv_style_set_text_font(&font_style, &chinese);
+  // lv_obj_add_style(ui_BAT, &font_style, 0);
+  // lv_obj_add_style(ui_Label3, &font_style, 0);
+  // // lv_label_set_text(ui_BAT, "Pico-Touch");
+  // lv_timer_t *timer = lv_timer_create(Bat_Update, 1000, nullptr);
+  // lv_timer_ready(timer);
   
   // setCpuFrequencyMhz(160);
 }

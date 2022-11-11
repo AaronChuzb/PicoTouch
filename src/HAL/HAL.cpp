@@ -1,7 +1,7 @@
 /*
  * @Date: 2022-09-24 21:43:00
  * @LastEditors: AaronChu
- * @LastEditTime: 2022-10-15 00:18:14
+ * @LastEditTime: 2022-11-11 21:36:53
  */
 
 
@@ -24,7 +24,7 @@ void HAL::Init()
   HAL::Buzz_init();
   HAL::Audio_Init();
   HAL::Encoder_Init();
-  HAL::IMU_Init();
+  // HAL::IMU_Init();
   HAL::SD_Init();
   HAL::WiFi_Init();
   HAL::Time_Init();
@@ -34,7 +34,7 @@ void HAL::Update()
 {
   HAL::Encoder_Update();
   HAL::Audio_Update();
-  HAL::IMU_Update(500);
+  // HAL::IMU_Update(500);
   
   // lv_label_set_text(ui_Label1, HAL::Get_BatPercent().c_str());
 }

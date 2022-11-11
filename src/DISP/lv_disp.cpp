@@ -1,7 +1,7 @@
 /*
  * @Date: 2022-09-24 16:23:28
  * @LastEditors: AaronChu
- * @LastEditTime: 2022-10-05 22:42:23
+ * @LastEditTime: 2022-11-11 22:02:45
  */
 /* Display flushing */
 
@@ -57,11 +57,11 @@ void my_touchpad_read(lv_indev_drv_t *indev_driver, lv_indev_data_t *data)
 
 void disp_init(SCREEN_CLASS* scr){
   
-  lv_disp_buf_p = static_cast<lv_color_t *>(malloc(SCR_WIDTH * SCR_HEIGHT / 2 * sizeof(lv_color_t)));
+  lv_disp_buf_p = static_cast<lv_color_t *>(malloc(SCR_WIDTH * SCR_HEIGHT/2 * sizeof(lv_color_t)));
   if (lv_disp_buf_p == nullptr)
     LV_LOG_WARN("lv_port_disp_init malloc failed!\n");
   // lv_color_t* lv_disp_buf_p = static_cast<lv_color_t*>(malloc(SCR_WIDTH * SCR_HEIGHT / 10 * sizeof(lv_color_t)));
-  lv_disp_draw_buf_init(&disp_buf, lv_disp_buf_p, NULL, SCR_WIDTH * 10);
+  lv_disp_draw_buf_init(&disp_buf, lv_disp_buf_p, NULL, SCR_WIDTH * SCR_HEIGHT/2);
    /*Initialize the display*/
   lv_disp_drv_init(&disp_drv);
   /*Change the following line to your display resolution*/
