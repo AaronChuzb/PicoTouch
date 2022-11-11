@@ -1,6 +1,7 @@
 #include "HAL/HAL.h"
 #include "DISP/DISP.h"
-#include "UI/ui.h"
+// #include "UI/ui.h"
+#include "UI/Page.h"
 
 
 
@@ -23,7 +24,8 @@ void setup()
   // 顺序不能调换，需要先申请足够的内存，如果先对HAL库进行初始化就会没有足够连续的内存给lvgl申请
   Disp_Init();
   HAL::Init();
-  // PageManagerInit();
+  PageManagerInit();
+  
   // ui_init();
   // LV_FONT_DECLARE(chinese);
   // static lv_style_t font_style;
